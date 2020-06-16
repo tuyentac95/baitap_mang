@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Từ điển</title>
+</head>
+<body>
+    <h3>Từ điển Anh-Việt</h3>
+    <input type="text" id="timkiem"/>
+    <input type="button" value="Tra cứu" onclick="tracuu();"/>
+    <div id="kqua"></div>
+    <script>
+        function tracuu() {
+            let tuvung_Eng = ['bear', 'cat', 'chicken', 'dog', 'fish', 'mouse', 'pig', 'tiger'];
+            let tuvung_VN = ['con gấu', 'con mèo', 'con gà', 'con chó', 'con cá', 'con chuột', 'con lợn', 'con hổ'];
+            let tu_tra_cuu = document.getElementById('timkiem').value;
+            let kqua_tracuu = '';
+            let i;
+            for (i=0; i < tuvung_Eng.length; i++) {
+                if (tuvung_Eng[i] === tu_tra_cuu) {
+                    kqua_tracuu = tuvung_VN[i];
+                    break;
+                } else {
+                    kqua_tracuu = 'Không tìm thấy';
+                }
+            }
+        document.getElementById('kqua').innerHTML = kqua_tracuu;
+        }
+    </script>
+</body>
+</html>
