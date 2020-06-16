@@ -22,11 +22,7 @@
             document.getElementById('inputMang').value = '';
         }
         function displayArray() {
-            let display_my_array = '';
-            for (let i = 0; i < my_array.length; i++) {
-                display_my_array += my_array[i] + ',';
-            }
-            display_my_array = display_my_array.substring(0, display_my_array.length - 1);
+            let display_my_array = my_array.join();
             document.getElementById('result').innerHTML = display_my_array;
         }
     </script>
