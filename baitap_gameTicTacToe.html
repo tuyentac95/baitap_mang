@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tic Tac Toe</title>
+</head>
+<body>
+    <h3>Game Tic Tac Toe</h3>
+    <div id="Result"></div>
+    <p id="TicTacToe"></p>
+    <script>
+        let game = document.getElementById('TicTacToe');
+        let board = [];
+        let datagame = '';
+        let flag = 1;
+        for (let i=0; i < 5; i++) {
+            board[i] = ['.', '.', '.', '.', '.'];
+        }
+        for (let i=0; i < 5; i++) {
+            datagame += '<br/>';
+            for (let j=0; j < 5; j++) {
+                datagame += board[i][j] + '&nbsp;&nbsp;';
+            }
+        }
+        datagame += '<br/><br/><input type="button" value="Play game" id="playgame" onclick="changeValue();">';
+        game.innerHTML = datagame;
+        function changeValue() {
+            let positionX = +prompt('X: ');
+            let positionY = +prompt('Y: ');
+            while (board[positionX][positionY] !== '.') {
+                alert('Error');
+                positionX = +prompt('X: ');
+                positionY = +prompt('Y: ');
+            }
+            datagame = '';
+            if (flag > 0) {
+                board[positionX][positionY] = 'x';
+            } else {
+                board[positionX][positionY] = 'o';
+            }
+            for (let i=0; i < 5; i++) {
+                datagame += '<br/>';
+                for (let j=0; j < 5; j++) {
+                    datagame += board[i][j] + '&nbsp;&nbsp;';
+                }
+            }
+            datagame += '<br/><br/><input type="button" value="Play game" id="playgame" onclick="changeValue();">';
+            game.innerHTML = datagame;
+            flag = -flag;
+            // Kiểm tra thắng
+            for (let i=1; i < 4; i++) {
+                for (let j=0; j < 5; j++) {
+                    if (((board[i][j] != '.') && (board[i][j] == board[i][j-1]) && (board[i][j] == board[i][j+1]))
+                        || ((board[i][j] != '.') && (board[i][j] == board[i-1][j]) && (board[i][j] == board[i+1][j]))
+                         || ((board[i][j] != '.') && (board[i][j] == board[i-1][j-1]) && (board[i][j] == board[i+1][j+1]))
+                         || ((board[i][j] != '.') && (board[i][j] == board[i-1][j+1]) && (board[i][j] == board[i+1][j-1]))) {
+                        if (flag < 0) {
+                            document.getElementById('Result').innerText = 'x win';
+                            document.getElementById('playgame').onclick = '';
+                        } else {
+                            document.getElementById('Result').innerText = 'o win';
+                            document.getElementById('playgame').onclick = '';
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>
