@@ -51,7 +51,7 @@
     <h3>Bài 3:</h3>
     <input type="text" id="iptext"/>
     <input type="button" value="Convert" onclick="convertText();"/>
-    <div id="reSult"></div>
+    <div id="reSult1"></div>
     <script>
         function convertText() {
             let int_string = document.getElementById('iptext').value;
@@ -68,7 +68,7 @@
                     reSult += int_string[i];
             }
             console.log(reSult);
-            document.getElementById('reSult').innerHTML = reSult;
+            document.getElementById('reSult1').innerHTML = reSult;
          }
     </script>
 </body>

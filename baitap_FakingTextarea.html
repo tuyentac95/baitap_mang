@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Faking Textarea</title>
+</head>
+<body>
+    <h3>Type anything slowly</h3>
+    <form>
+        <textarea cols="50" rows="4" id="faketyping" value="" onkeydown="keydown();" onkeyup="keyup();"></textarea>
+    </form>
+    <script>
+        function keydown() {
+            keyup()
+        }
+        function keyup() {
+            let faketype = 'I am a foolish!';
+            let yourtype = document.getElementById('faketyping').value;
+            if (yourtype.length <= faketype.length) {
+                yourtype = yourtype.substring(0, yourtype.length - 1);
+                yourtype += faketype[yourtype.length];
+            } else {
+                yourtype = '';
+            }
+            document.getElementById('faketyping').value = yourtype;
+        }
+    </script>
+</body>
+</html>
