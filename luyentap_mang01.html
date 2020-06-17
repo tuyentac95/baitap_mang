@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập mảng 01</title>
+</head>
+<body>
+    <h3>Bài 1:</h3>
+    <p>Nhập vào 10 số nguyên:
+        <input type="number" id="iptNum1"/>
+        <input type="button" value="Thêm số" id="themso_1" onclick="themSo();"/>
+        <input type="button" value="Kiểm tra" onclick="kiemtra();"/>
+    </p>
+    <div id="result1a"></div>
+    <div id="result1b"></div>
+    <script>
+        let my_array1 = [];
+        function themSo() {
+            my_array1[my_array1.length] = document.getElementById('iptNum1').value;
+            document.getElementById('result1a').innerHTML = 'Mảng của bạn: [' + my_array1 + ']';
+            if (my_array1.length == 10) {
+                document.getElementById('themso_1').onclick = '';
+            }
+        }
+        function kiemtra() {
+            if (my_array1.length < 10) {
+                alert('Chưa đủ 10 số!')
+            } else {
+                let count = 0;
+                for (let i=0; i < my_array1.length; i++) {
+                    if (my_array1[i] >= 10) {
+                        count += 1;
+                    }
+                }
+                document.getElementById('result1b').innerHTML = ('Mảng có ' + count + ' phần tử >= 10.');
+            }
+        }
+    </script>
+    <h3>Bài 2+3:</h3>
+    <p>Nhập 10 số nguyên khác nhau:
+        <input type="number" id="iptNum2"/>
+        <input type="button" value="Thêm số" id="themso_2" onclick="themso_2();"/>
+        <input type="button" value="Tìm max" onclick="timMax();"/>
+        <input type="button" value="Tính TBC" onclick="tinhTBC();"/>
+    </p>
+    <div id="result2a"></div>
+    <div id="result2b"></div>
+    <div id="result2c"></div>
+    <script>
+        let my_array2 = [];
+        function themso_2() {
+            my_array2[my_array2.length] = document.getElementById('iptNum2').value;
+            document.getElementById('result2a').innerHTML = 'Mảng của bạn là [' + my_array2 + ']';
+            /*chỉnh lại*/for (let i=0; i < (my_array2.length - 1); i++) {
+                if (my_array2[my_array2.length-1] === my_array2[i]) {
+                    alert('Số bị trùng');
+                    my_array2 = my_array2.splice(0, my_array2.length-1);
+                    document.getElementById('result2a').innerHTML = 'Mảng của bạn là [' + my_array2 + ']';
+                }
+            }
+            if (my_array2.length == 10) {
+                alert('Đã đủ 10 số');
+                document.getElementById('themso_2').onclick ='';
+            }
+        }
+        function timMax() {
+            let max_arr = parseInt(my_array2[0]);
+            let index = 0;
+            for (let i=0; i < my_array2.length; i++) {
+                if (max_arr < parseInt(my_array2[i])) {
+                    max_arr = my_array2[i];
+                    index = i;
+                }
+            }
+            document.getElementById('result2b').innerHTML = 'Số lớn nhất là: ' + max_arr + ' tại vị trí '+ + index;
+        }
+        function tinhTBC() {
+            let sum_arr = 0;
+            for (let i=0; i < my_array2.length; i++) {
+                sum_arr += parseInt(my_array2[i]);
+            }
+            let TBC_arr = (sum_arr / my_array2.length);
+            document.getElementById('result2c').innerHTML = 'TBC là: ' + TBC_arr;
+        }
+    </script>
+    <h3>Bài 4: </h3>
+    <p>Nhập vào các số nguyên:
+        <input type="number" id="iptNum4"/>
+        <input type="button" value="Thêm số" onclick="themso_4();"/>
+        <input type="button" value="Đảo ngược" onclick="reverseArray();">
+        <div id="result4a"></div>
+        <div id="result4b"></div>
+    </p>
+    <script>
+        let my_array4 = [];
+        function themso_4() {
+            my_array4[my_array4.length] = document.getElementById('iptNum4').value;
+            document.getElementById('result4a').innerHTML = 'Mảng của bạn là [' + my_array4 + ']';
+        }
+        function reverseArray() {
+            let rev_my_array4 = my_array4.reverse();
+            document.getElementById('result4b').innerHTML = 'Mảng đảo ngược là [' + rev_my_array4 +']';
+        }
+    </script>
+    <h3>Bài 5: </h3>
+    <p>Nhập vào các số nguyên:
+        <input type="number" id="iptNum5"/>
+        <input type="button" value="Thêm số" onclick="themso_5();"/>
+        <input type="button" value="Đếm số âm" onclick="demSoAm();"/>
+    </p>
+    <div id="result5a"></div>
+    <div id="result5b"></div>
+    <script>
+        let my_array5 = [];
+        function themso_5() {
+            my_array5[my_array5.length] = document.getElementById('iptNum5').value;
+            console.log(my_array5);
+            document.getElementById('result5a').innerHTML = 'Mảng của bạn là [' + my_array5 + ']';
+        }
+        function demSoAm() {
+            let count_5 = 0;
+            for (let i=0; i < my_array5.length; i++) {
+                if (parseInt(my_array5[i]) < 0) {
+                    count_5 += 1;
+                }
+            }
+            document.getElementById('result5b').innerHTML = 'Có ' + count_5 + ' số nguyên âm';
+        }
+    </script>
+    <h3>Bài 6+7: </h3>
+    <p>Nhập 10 số nguyên:
+        <input type="number" id="iptNum6"/>
+        <input type="button" value="Thêm số" id="themso_6" onclick="themso_6();"/>
+    </p>
+    <p>Nhập số cần tìm:
+        <input type="number" id="iptNum6a"/>
+        <input type="button" value="Tìm kiếm" onclick="timkiem();">
+        <input type="button" value="Xóa bỏ" onclick="xoabo();">
+    </p>
+    <div id="result6a"></div>
+    <div id="result6b"></div>
+    <div id="result6c"></div>
+    <script>
+        let my_array6 = [];
+        function themso_6() {
+            my_array6[my_array6.length] = document.getElementById('iptNum6').value;
+            document.getElementById('result6a').innerHTML = 'Mảng của bạn là [' + my_array6 + ']';
+            for (let i=0; i < (my_array6.length - 1); i++) {
+                if (my_array6[my_array6.length-1] === my_array6[i]) {
+                    alert('Số bị trùng');
+                    my_array6 = my_array6.splice(0, my_array6.length-1);
+                    document.getElementById('result6a').innerHTML = 'Mảng của bạn là [' + my_array6 + ']';
+                }
+            }
+            if (my_array6.length == 10) {
+                alert('Đã đủ 10 số');
+                document.getElementById('themso_6').onclick = '';
+            }
+        }
+        function timkiem() {
+            let so_can_tim = document.getElementById('iptNum6a').value;
+            for (let i = 0; i < my_array6.length; i++) {
+                if (my_array6[i] == so_can_tim) {
+                    document.getElementById('result6b').innerHTML = so_can_tim + ' ở vị tri ' + i + ' trong mảng';
+                    break;
+                } else {
+                    document.getElementById('result6b').innerHTML = 'Không có ' + so_can_tim + ' trong mảng';
+                }
+            }
+        }
+        function xoabo() {
+            let so_can_xoa = document.getElementById('iptNum6a').value;
+            for (let i=0; i < my_array6.length; i++) {
+                if (my_array6[i] == so_can_xoa) {
+                    for (let j = i; j < (my_array6.length - 1); j++) {
+                        my_array6[j] = my_array6[j+1];
+                    }
+                    my_array6 = my_array6.splice(0, my_array6.length-1);
+                    document.getElementById('result6c').innerHTML = '[' + my_array6 + ']';
+                    break;
+                } else {
+                    document.getElementById('result6c').innerHTML = 'Không có phần tử ' + so_can_xoa;
+                }
+            }
+        }
+    </script>
+    <h3>Bài 8: </h3>
+    <p>Nhập 10 số nguyên:
+        <input type="number" id="iptNum7"/>
+        <input type="button" value="Thêm số" id="themso_7" onclick="themso_7();"/>
+        <input type="button" value="Sắp xếp" onclick="sapxep();">
+    </p>
+    <div id="result7a"></div>
+    <div id="result7b"></div>
+    <script>
+        let my_array7 = [];
+        function themso_7() {
+            my_array7[my_array7.length] = document.getElementById('iptNum7').value;
+            document.getElementById('result7a').innerHTML = 'Mảng của bạn là [' + my_array7 + ']';
+            if (my_array7.length == 10) {
+                alert('Đã đủ 10 số');
+                document.getElementById('themso_7').onclick = '';
+            }
+        }
+        function sapxep() {
+            my_array7 = my_array7.sort(function (a, b) {
+                return b - a
+            });
+            document.getElementById('result7b').innerHTML = 'Mảng sau khi sắp xếp là [' + my_array7 + ']';
+        }
+    </script>
+    <h3>Bài 9: </h3>
+    <p>Nhập 10 số mảng a:
+        <input type="number" id="iptNum9a"/>
+        <input type="button" value="Thêm số" id="themso_9a" onclick="themso_9a();"/>
+    </p><p>Nhập 10 số mảng b:
+        <input type="number" id="iptNum9b"/>
+        <input type="button" value="Thêm số" id="themso_9b" onclick="themso_9b();"/>
+        <input type="button" value="Ghép mảng" onclick="ghepMang();"/>
+    </p>
+    <div id="result9a"></div>
+    <div id="result9b"></div>
+    <div id="result9c"></div>
+    <script>
+        let my_array9a = [], my_array9b = [], my_array9c = [];
+        function themso_9a() {
+            my_array9a[my_array9a.length] = document.getElementById('iptNum9a').value;
+            document.getElementById('result9a').innerHTML = 'Mảng a là [' + my_array9a + ']';
+        }function themso_9b() {
+            my_array9b[my_array9b.length] = document.getElementById('iptNum9b').value;
+            document.getElementById('result9b').innerHTML = 'Mảng b là [' + my_array9b + ']';
+        }
+        function ghepMang() {
+            my_array9c = my_array9a.concat(my_array9b);
+            document.getElementById('result9c').innerHTML = 'Mảng c là [' + my_array9c + ']';
+        }
+     </script>
+</body>
+</html>

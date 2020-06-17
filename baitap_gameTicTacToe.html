@@ -48,7 +48,7 @@
             game.innerHTML = datagame;
             flag = -flag;
             // Kiểm tra thắng
-            for (let i=1; i < 4; i++) {
+            for (let i=1; i < 5; i++) {
                 for (let j=0; j < 5; j++) {
                     if (((board[i][j] != '.') && (board[i][j] == board[i][j-1]) && (board[i][j] == board[i][j+1]))
                         || ((board[i][j] != '.') && (board[i][j] == board[i-1][j]) && (board[i][j] == board[i+1][j]))
@@ -61,6 +61,17 @@
                             document.getElementById('Result').innerText = 'o win';
                             document.getElementById('playgame').onclick = '';
                         }
+                    }
+                }
+            }
+            for (let j=1; j<5; j++) {
+                if ((board[0][j] != '.') && (board[0][j] == board[0][j-1]) && (board[0][j] == board[0][j+1])) {
+                    if (flag < 0) {
+                        document.getElementById('Result').innerText = 'x win';
+                        document.getElementById('playgame').onclick = '';
+                    } else {
+                        document.getElementById('Result').innerText = 'o win';
+                        document.getElementById('playgame').onclick = '';
                     }
                 }
             }
