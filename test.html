@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sort</title>
+</head>
+<body>
+    <script>
+        function inputArray(a) {
+            let sizeArr;
+            do {
+                sizeArr = +prompt('Nhập kích thước mảng');
+            } while (sizeArr < 1);
+            for (let i=0; i < sizeArr; i++) {
+                a[i] = prompt('Nhập phần tử ' + i);
+            }
+            //return a;
+        }
+        function sortArray(a) {
+            let temp;
+            for (let i=0; i < a.length; i++) {
+                for (let j=i+1; j < a.length; j++) {
+                    if (a[i] < a[j]) {
+                        temp = a[i];
+                        a[i] = a[j];
+                        a[j] = temp;
+                    }
+                }
+            }
+            return a;
+        }
+        let arr = [];
+        inputArray(arr);
+        sortArray(arr);
+        document.write(sortArray(arr));
+    </script>
+</body>
+</html>

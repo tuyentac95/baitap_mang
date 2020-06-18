@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Luyện tập mảng 2</title>
+</head>
+<body>
+    <h3>Bài 1:</h3>
+    <div id="result1a"></div>
+    <div id="result1b"></div>
+    <script>
+        let my_array1 = [
+            [1, 2, 3],
+            [4, 5, 6]
+        ];
+        let my_result = '';
+        for (let i=0; i < my_array1.length; i++) {
+            my_result += '['
+            for (let j=0; j < my_array1[i].length; j++) {
+                my_result += my_array1[i][j] + ' ';
+            }
+            my_result += ']<br/>';
+        }
+        document.getElementById('result1a').innerHTML = my_result;
+        let my_result1 = '';
+        for (let i = 0; i < my_array1.length; i++) {
+            my_result1 += 'row ' + i + '<br/>';
+            for (let j=0; j < my_array1[i].length; j++) {
+                my_result1 += my_array1[i][j] + '<br/>';
+            }
+        }
+        document.getElementById('result1b').innerHTML = my_result1;
+    </script>
+    <h3>Bài 2 + 3: </h3>
+    <p>Nhập vào các kí tự:
+        <input type="button" value="Nhập mảng kí tự" onclick="nhapMang();"/>
+    </p>
+    <p>
+        <input type="button" value="Đảo ngược" onclick="daonguocMang();"/>
+        <input type="button" value="Đếm số" onclick="demSo();"/>
+    </p>
+    <div id="result2"></div>
+    <div id="result2b"></div>
+    <div id="result2c"></div>
+    <script>
+        let my_array2 = [];
+        let size_arr;
+        function nhapMang() {
+            do {
+                size_arr = +prompt('Nhập kích thước mảng: ');
+            } while (size_arr <= 0);
+            for (let i=0; i < size_arr; i++) {
+                my_array2[i] = prompt('Nhập phần tử ' + i + ': ');
+                while (my_array2[i].length > 1) {
+                    my_array2[i] = prompt('Nhập lại: ');
+                }
+            }
+            document.getElementById('result2').innerHTML = 'Mảng của bạn là [' + my_array2 + ']';
+        }
+        function daonguocMang() {
+            let rev_my_array2 = my_array2.reverse();
+            document.getElementById('result2b').innerHTML = 'Mảng đảo ngược là [' + rev_my_array2 + ']';
+        }
+        function demSo() {
+            let chuoiso = '0123456789';
+            let count_kituSo = 0;
+            for (let i=0; i < my_array2.length; i++) {
+                if (chuoiso.indexOf(my_array2[i]) !== -1) {
+                    count_kituSo += 1;
+                }
+            }
+            document.getElementById('result2c').innerHTML = 'Có ' + count_kituSo + ' phần tử số';
+        }
+    </script>
+    <h3>Bài 4:</h3>
+    <p>Nhập chuỗi
+        <input type="text" id="iptString"/>
+        <input type="button" value="Đếm từ" onclick="countWords();">
+    </p>
+    <div id="result4"></div>
+    <script>
+        function countWords() {
+            let my_string = document.getElementById('iptString').value;
+            let wordsCount = 1;
+            let num_string = '0123456789';
+            if (my_string.length == 0) {
+                wordsCount = 0;
+                return wordsCount;
+            }
+            for (let i=0; i < my_string.length-1; i++) {
+                if ((my_string[i] === ' ') && (my_string[i+1] != ' ')) {
+                    wordsCount += 1;
+                }
+            }
+            document.getElementById('result4').innerHTML = 'Có ' + wordsCount + ' từ';
+        }
+    </script>
+    <h3>Bài 5:</h3>
+    <p>Nhập chuỗi 1: <input type="text" id="my_string_1"/></p>
+    <p>Nhập chuỗi 2: <input type="text" id="my_string_2"/>
+        <input type="button" value="So sánh" onclick="soSanhChuoi();">
+    </p>
+    <div id="result5"></div>
+    <script>
+        function soSanhChuoi() {
+            let my_string_1 = document.getElementById('my_string_1').value;
+            let my_string_2 = document.getElementById('my_string_2').value;
+            if ((my_string_1 == '') || (my_string_2 == '')) {
+                alert(' Nhập 2 chuỗi');
+            } else {
+                let isTheSame;
+                if (my_string_1.length === my_string_2.length) {
+                    isTheSame = false;
+                }
+                for (let i=0; i < my_string_1.length; i++) {
+                    if (my_string_1[i] === my_string_2[i]) {
+                        isTheSame = true;
+                    } else {
+                        isTheSame = false;
+                        break;
+                    }
+                }
+                if (isTheSame) {
+                    document.getElementById('result5').innerText = 'Hai chuỗi giống nhau';
+                } else {
+                    document.getElementById('result5').innerText = 'Hai chuỗi khác nhau';
+                }
+            }
+        }
+    </script>
+    <h3>Bài 6:</h3>
+    <p>Nhập mảng kí tự:
+        <input type="text" id="iptChar"/>
+        <input type="button" value="Nhập kí tự" onclick="iptArray();">
+        <input type="button" value="Đổi kí tự" onclick="changeChar();">
+    </p>
+    <div id="result6a"></div>
+    <div id="result6b"></div>
+    <script>
+        let my_array_6 = [];
+        function iptArray() {
+            let new_Char = document.getElementById('iptChar').value;
+            if ((new_Char.length == 0) || (new_Char.length > 1)) {
+                alert('Nhập lại kí tự');
+                new_Char = '1';
+            } else {
+                my_array_6[my_array_6.length] = new_Char;
+                document.getElementById('result6a').innerHTML = 'Mảng của bạn là [' + my_array_6 + ']';
+            }
+        }
+        function changeChar() {
+            for (let i=0; i < my_array_6.length; i++) {
+                if (my_array_6[i] == '-') {
+                    my_array_6[i] = '_';
+                }
+            }
+            document.getElementById('result6b').innerHTML = 'Mảng mới của bạn là [' + my_array_6 + ']';
+        }
+    </script>
+</body>
+</html>
